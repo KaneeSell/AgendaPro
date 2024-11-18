@@ -1,0 +1,198 @@
+@charset "UTF-8";
+*{
+    margin: 0px;
+    padding: 0px;
+}
+body{
+    background-image: linear-gradient(20deg, rgb(120, 230, 230), rgb(215, 241, 238));
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    cursor: default;
+    font-size: 30px;
+}
+header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid black;
+    color: white;
+    padding: 0px 0px 5px 0px;
+    text-shadow: 1px 1px 1px black;
+    background-color: rgba(0, 255, 255, 0.377);
+}
+main{
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black;
+    padding: 5px 10px;
+    background-color: rgba(0, 255, 255, 0.309);
+}
+.alert-modal{
+    display: none;
+    color: red;
+    font-size: 15px;
+}
+.alert-sucesso{
+    display: none;
+    color: blue;
+    font-size: 15px;
+}
+.alert-valido{
+    display: none;
+    color: rgb(131, 234, 138);
+    font-size: 15px;
+}
+#data-atual{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+footer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0px 3px;
+    background-color: rgba(34, 143, 143, 0.362);
+}
+.modal {
+    display: none; /* Hidden by default */
+    justify-content: center;
+    align-items: center;
+    flex-flow: column wrap;
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.5); /* Black w/ opacity */
+}
+/* Modal Content/Box */
+.add-content-modal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column wrap;
+    background-color: #fefefe;
+    margin: 90px auto; /* 15% from the top and centered */
+    padding: 20px;
+    max-width: 600px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+}
+/* The Close Button */
+.add-close, .add-salvar {
+    display: flex;
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.add-close:hover,
+.add-close:focus{
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+.add-salvar:hover,
+.add-salvar:focus {
+    color: rgb(109, 247, 226);
+    text-decoration: none;
+    cursor: pointer;
+}
+  
+.foot-modal{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: row wrap;
+    gap: 10px;
+    margin-top: 5px;
+}
+#nav-painel{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    min-width: 100px;
+    min-height: 30px;
+    margin: 10px 0px;
+    gap: 10px;
+}
+#eventos-painel{
+    display: flex;
+    flex-flow: column wrap;
+    min-width: 100px;
+    min-height: 100px;
+    gap: 10px;
+}
+.btn{
+    border-radius: 20px;
+    padding: 5px;
+    cursor: pointer;
+
+}
+#nome-descricao{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+#nome-descricao > p{
+    width: 500px;
+    display: inline-block;
+    white-space: pre-line;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    direction: ltr;
+    max-height: 300px;
+}
+#evento-ativo{
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column wrap;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: aqua;
+    max-width: 800px;
+  }
+  #edit-del{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+  }
+  #edit{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px 10px;
+    font-size: 20px;
+    border-radius: 5px;
+  }
+  #edit:hover{
+    background-color: aquamarine;
+    color: white;
+  }
+  #del{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px 10px;
+    font-size: 20px;
+    border-radius: 5px;
+  }
+  #del:hover{
+    background-color: lightcoral;
+    color: white;
+  }
+  #h2-edit{
+    display: none;
+  }

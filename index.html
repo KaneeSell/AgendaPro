@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>AgendaPro</title>
+        <link rel="stylesheet" href="./style.css">
+    </head>
+    <body>
+        <header>
+            <h1>AgendaPro</h1>
+        </header>
+        <div id="add-modal" class="modal">
+                <form onsubmit="salvarEvento(event)" id="formAgenda" class="add-content-modal">
+                    <h2 id="h2-novo">Novo Evento</h2>
+                    <h2 id="h2-edit">Editar Evento</h2>
+                    <label for="nome-evento">Nome:</label>
+                    <input type="text" name="nome-evento" id="nome-evento" oninput="consultarNome()" minlength="4" maxlength="20" autocomplete="off" required>
+                    <label for="nome-evento" class="alert-modal">Já existe um Evento com esse nome!</label>
+                    <label for="nome-evento" class="alert-sucesso">Evento salvo com sucesso!</label>
+                    <label for="nome-evento" class="alert-valido">Nome Válido!</label>
+                    <label for="descricao-evento">Descrição:</label>
+                    <textarea name="descricao-evento" id="descricao-evento" cols="30" rows="10" required></textarea>
+                    <div class="foot-modal">
+                        <button type="submit" class="add-salvar">Salvar
+                        </button>
+                        <button class="add-close">Fechar
+                        </button>
+                    </div>
+                </form>
+        </div>
+        <nav id="nav-painel">
+            <button id="btn-add-modal" class="btn" type="button">Novo</button>
+            <button id="btn-atualizar" class="btn" type="button">Atualizar</button>
+            <button class="btn" type="button" onclick="limparTudo()">Limpar Tudo</button>
+        </nav>
+        <main>
+            <h2>Eventos</h2>
+            <p id="data-atual"></p>
+            <p id="hora-atual"></p>
+            <div id="eventos-painel"></div>
+        </main>
+        <footer>
+            <p>By Kanee Sell</p>
+        </footer>
+    </body>
+    <script src="./script.js"></script>
+</html>
