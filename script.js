@@ -152,9 +152,6 @@ function atualizarEventos(){
             if(eventos[i].ativo){
                 document.getElementById('eventos-painel').style.display = 'flex'
                 criarDivEvento(eventos[i].nome, eventos[i].descricao, eventos[i].id)
-                validador = true
-            }
-            if(validador == false){
             }
         }
     }
