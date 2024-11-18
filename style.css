@@ -196,3 +196,26 @@ footer{
   #h2-edit{
     display: none;
   }
+  @media only screen and (max-width: 600px) {
+    main{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 10px 10px;
+    }
+    .main, #edit, #del, #nome-descricao, #evento-ativo{
+        display: flex;
+        align-items: center;
+        flex-flow: column wrap;
+        max-width: 230px;
+        margin-left: 0px;
+    }
+    #nome-descricao > p, #nome-descricao > h4{
+        width: 230px;
+        display: inline-block;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        direction: ltr;
+    }
+  }

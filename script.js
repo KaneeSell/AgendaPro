@@ -169,8 +169,8 @@ function criarDivEvento(nome, descricao, id){
                             <p>${descricao}</p>
                         </div>
                         <div id="edit-del">
-                            <button id="edit" onclick="editarEvento(${id})">Edit</button>
-                            <button id="del" onclick="desativarEvento(${id})">Del</button>
+                            <button id="edit" onclick="editarEvento(${id})">Editar</button>
+                            <button id="del" onclick="desativarEvento(${id})">Deletar</button>
                         </div>
                     </div>`
 }
