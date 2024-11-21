@@ -156,16 +156,18 @@ input{
 .btn:hover{
     transform: scale(1.1);
 }
+.btn-config > img{
+    transform: rotate(0deg);
+    transition: 0.5s;
+}
+.btn-config:hover > img{
+    transform: rotate(180deg);
+}
 .btn-config{
     cursor: pointer;
     background-color: transparent;
     border: none;
     border-radius: 100%;
-    transform: rotate(0deg);
-    transition: 0.5s;
-}
-.btn-config:hover{
-    transform: rotate(60deg);
 }
 .btn-config-interno{
     font-size: 20px;
