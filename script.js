@@ -222,6 +222,10 @@ function atualizarEventos(){
     document.getElementById('eventos-painel').innerHTML = ''
     const h2eventos = document.getElementById('h2-eventos')
     const eventos = JSON.parse(localStorage.getItem("eventos"))
+    if(eventos){
+    } else{
+            localStorage.setItem("eventos", JSON.stringify('[]'));
+    }
     document.getElementById('eventos-painel').style.display = 'none'
     for(let i = 0; i < eventos.length; i++){
         if(eventos.length > 0){
@@ -234,8 +238,6 @@ function atualizarEventos(){
                 document.getElementById('eventos-painel').style.display = 'flex'
                 criarDivhistorico(eventos[i].nome, eventos[i].descricao, eventos[i].id)
             }
-        } else{
-            localStorage.setItem("eventos", JSON.stringify('[]'));
         }
     }
 }
