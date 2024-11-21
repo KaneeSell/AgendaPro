@@ -22,56 +22,113 @@ function atualizarData() {
     inputData.innerText = `${dia}/${mes}/${ano}`
     inputHora.innerText = `${hora}:${minuto}:${segundo} ${ampm}`
 }
-// modal - novo
+document.getElementById('h2-eventos').style.display = 'block';
+// modal
 const modal = document.getElementById("add-modal");
+const modalVisualizar = document.getElementById("add-modal-visualizar");
+const modalConfig = document.getElementById("add-modal-config");
+const modalLimparTudo = document.getElementById("confirm-limpar-tudo");
+const modalLimpoMsg = document.getElementById("msg-tudo-limpo");
 const btnNovo = document.getElementById("btn-add-modal");
 const btnAtualizar = document.getElementById("btn-atualizar");
+const btnConfig = document.getElementById("btn-config");
+const conteudoVisualizar = document.getElementById("conteudo-visualizar");
 const h2Novo = document.getElementById("h2-novo");
 const h2Edit = document.getElementById("h2-edit");
+const limparTudoConfig = document.getElementById('limpar-tudo-config')
 const btnClose = document.getElementsByClassName("add-close")[0];
+const btnCloseVisualizar = document.getElementsByClassName("add-close")[1];
+const btnCloseConfig = document.getElementsByClassName("add-close")[2];
+const btnCloseLumparTudo = document.getElementsByClassName("add-close")[3];
+const btnCloseLimpoMsg = document.getElementsByClassName("add-close")[4];
 const btnSalvar = document.getElementsByClassName("add-salvar")[0];
+const formEvent = document.getElementById('formAgenda')
 btnNovo.onclick = function(event) {
     event.preventDefault();
     localStorage.setItem('edit', false)
     modal.style.display = "block";
+    formEvent.style.display = "flex";
     h2Edit.style.display = "none";
     h2Novo.style.display = "block";
+    modalVisualizar.style.display = "none";
+    modalConfig.style.display = "none";
     document.getElementById('nome-evento').focus()
 }
-function limparTudo() {
-    let limparTudo = prompt(`Se deseja limpar todos os eventos escreva LIMPAR TUDO`)
-    if(limparTudo){
-        limparTudo = limparTudo.toUpperCase()
-    }
-    if(limparTudo == `LIMPAR TUDO`){
+
+btnClose.onclick = function(event) {
+    fecharModal()
+}
+btnCloseVisualizar.onclick = function(event) {
+    event.preventDefault();
+    fecharModal()
+}
+btnCloseConfig.onclick = function(event) {
+    event.preventDefault();
+    fecharModal()
+}
+btnCloseLumparTudo.onclick = function(event) {
+    event.preventDefault();
+    fecharModal()
+}
+btnCloseLimpoMsg.onclick = function(event) {
+    event.preventDefault();
+    fecharModal()
+}
+limparTudoConfig.onclick = function(event) {
+    event.preventDefault();
+    fecharModal()
+    modal.style.display = "block";
+    modalLimparTudo.style.display = "block"
+}
+
+function limparTudo(event) {
+    event.preventDefault();
+    const confirm = (document.getElementById('confirm').value).toUpperCase()
+    if(confirm == 'LIMPAR TUDO'){
+        console.log('uer')
         localStorage.setItem('edit', false)
         localStorage.setItem('eventos', JSON.stringify([]))
         atualizarEventos();
-        alert('Registro de eventos foi Limpo!')
+        fecharModal()
+        modal.style.display = "block";
+        modalLimpoMsg.style.display = "block"
+        document.getElementById('p-msg-limpo').style.display = "block"
+        document.getElementById('p-msg-nao-limpo').style.display = "none"
+    } else{
+        console.log('uer else')
+        fecharModal()
+        modal.style.display = "block";
+        modalLimpoMsg.style.display = "block"
+        document.getElementById('p-msg-limpo').style.display = "none"
+        document.getElementById('p-msg-nao-limpo').style.display = "block"
     }
 }
-btnClose.onclick = function(event) {
-    event.preventDefault();
-    document.getElementById('nome-evento').value = ''
-    document.getElementById('descricao-evento').value = ''
-    h2Edit.style.display = "none";
-    h2Novo.style.display = "block";
-    modal.style.display = "none";
-    document.getElementsByClassName('alert-sucesso')[0].style.display = 'none'
-    document.getElementsByClassName('alert-modal')[0].style.display = 'none'
-    document.getElementsByClassName('alert-valido')[0].style.display = 'none'
-}
-window.onclick = function(event) {
-    if (event.target == modal) {
+
+function fecharModal() {
         document.getElementById('nome-evento').value = ''
         document.getElementById('descricao-evento').value = ''
+        document.getElementById('confirm').value = ''
         h2Edit.style.display = "none";
         h2Novo.style.display = "block";
         modal.style.display = "none";
+        formEvent.style.display = "none";
         document.getElementsByClassName('alert-sucesso')[0].style.display = 'none'
         document.getElementsByClassName('alert-modal')[0].style.display = 'none'
         document.getElementsByClassName('alert-valido')[0].style.display = 'none'
+        modalConfig.style.display = "none";
+        modalVisualizar.style.display = "none";
+        conteudoVisualizar.style.display = "none";
+        modalLimparTudo.style.display = "none";
+        modalLimpoMsg.style.display = "none";
+}
+window.onclick = function(event) {
+    if (event.target == modal) {
+        fecharModal()
     }
+}
+btnConfig.onclick = function(event) {
+    event.preventDefault();
+    abrirConfig();
 }
 btnAtualizar.onclick = function(event) {
     event.preventDefault();
@@ -106,14 +163,18 @@ function atualizaStorage(nome, descricao){
     }
     localStorage.setItem("eventos", JSON.stringify(eventos));
 }
-function salvarEvento(e){
-    e.preventDefault();
+function salvarEvento(e = ''){
+    if(e != ''){
+        e.preventDefault();
+    }
     let nome = document.getElementById('nome-evento').value
     let descricao = document.getElementById('descricao-evento').value
     if(verificarEvento(nome) || h2Edit.style.display != 'none'){
         atualizaStorage(nome, descricao)
-        nome = ''
-        descricao = ''
+        if(h2Edit.style.display == 'none'){
+            document.getElementById('nome-evento').value = ''
+            document.getElementById('descricao-evento').value = ''
+        }
         document.getElementById('nome-evento').focus()
         document.getElementsByClassName('alert-sucesso')[0].style.display = 'flex'
         document.getElementsByClassName('alert-valido')[0].style.display = 'none'
@@ -143,19 +204,19 @@ function consultarNome(){
 
 function atualizarEventos(){
     document.getElementById('eventos-painel').innerHTML = ''
+    const h2eventos = document.getElementById('h2-eventos')
     const eventos = JSON.parse(localStorage.getItem("eventos"))
-    if(eventos.length < 1){
-        document.getElementById('eventos-painel').style.display = 'none'
-    }
-    else{
-        document.getElementById('eventos-painel').style.display = 'none'
-        for(let i = 0; i < eventos.length; i++){
-            if(eventos[i].ativo){
+    document.getElementById('eventos-painel').style.display = 'none'
+    for(let i = 0; i < eventos.length; i++){
+        if(eventos.length > 0){
+            if(eventos[i].ativo && h2eventos.style.display == 'block'){
+                console.log(eventos[i].ativo + ', ' + h2eventos.style.display)
                 document.getElementById('eventos-painel').style.display = 'flex'
                 criarDivEvento(eventos[i].nome, eventos[i].descricao, eventos[i].id)
-                validador = true
             }
-            if(validador == false){
+            else if(eventos[i].ativo == false && h2eventos.style.display == 'none'){
+                document.getElementById('eventos-painel').style.display = 'flex'
+                criarDivhistorico(eventos[i].nome, eventos[i].descricao, eventos[i].id)
             }
         }
     }
@@ -163,8 +224,9 @@ function atualizarEventos(){
 function criarDivEvento(nome, descricao, id){
     document.getElementById('eventos-painel').style.display = 'flex'
     const eventosPainel = document.getElementById('eventos-painel')
-    eventosPainel.innerHTML += `<div id="evento-ativo">
-                        <div id="nome-descricao">
+    eventosPainel.innerHTML += `
+                    <div id="evento-ativo">
+                        <div id="nome-descricao" onclick="visualizarEvento(${id})">
                             <h4>${nome}</h4>
                             <p>${descricao}</p>
                         </div>
@@ -172,14 +234,41 @@ function criarDivEvento(nome, descricao, id){
                             <button id="edit" onclick="editarEvento(${id})">Editar</button>
                             <button id="del" onclick="desativarEvento(${id})">Deletar</button>
                         </div>
-                    </div>`
+                    </div>
+                            `
+}
+function criarDivhistorico(nome, descricao, id){
+    document.getElementById('eventos-painel').style.display = 'flex'
+    const eventosPainel = document.getElementById('eventos-painel')
+    eventosPainel.innerHTML += `
+                    <div id="evento-ativo">
+                        <div id="nome-descricao" onclick="visualizarEvento(${id})">
+                            <h4>${nome}</h4>
+                            <p>${descricao}</p>
+                        </div>
+                        <div id="edit-del">
+                            <button id="res" onclick="restaurarEvento(${id})">Restaurar</button>
+                        </div>
+                    </div>
+                            `
+}
+function visualizarEvento(id){
+    const eventos = JSON.parse(localStorage.getItem("eventos"))
+    localStorage.setItem('edit', false)
+    modalVisualizar.style.display = "block";
+    modal.style.display = "block";
+    formEvent.style.display = "none";
+    conteudoVisualizar.style.display = "block";
+    conteudoVisualizar.innerHTML = `<h3>${eventos[id].nome}</h2>
+                    <p>${eventos[id].descricao}</p>`
 }
 function editarEvento(id){
-    edit = id
     const eventos = JSON.parse(localStorage.getItem("eventos"))
+    fecharModal()
     modal.style.display = "block";
     h2Edit.style.display = "block";
     h2Novo.style.display = "none";
+    formEvent.style.display = "flex";
     localStorage.setItem(`edit`, id)
     document.getElementById('nome-evento').value = `${eventos[id].nome}`
     document.getElementById('descricao-evento').value = `${eventos[id].descricao}`
@@ -192,5 +281,34 @@ function desativarEvento(id){
     const ativo = false
     eventos[id] = ({ 'id': id,'nome': nome, 'descricao': descricao, 'ativo': ativo});
     localStorage.setItem("eventos", JSON.stringify(eventos));
+    atualizarEventos();
+}
+function abrirConfig(){
+    modal.style.display = "block";
+    modalVisualizar.style.display = "none";
+    formEvent.style.display = "none";
+    conteudoVisualizar.style.display = "none";
+    modalConfig.style.display = "block"
+}
+function historicoEventos(event){
+    event.preventDefault();
+    document.getElementById('eventos-painel').innerHTML = ''
+    const eventos = JSON.parse(localStorage.getItem("eventos"))
+    document.getElementById('h2-historico').style.display = 'block';
+    document.getElementById('h2-eventos').style.display = 'none';
+    atualizarEventos()
+}
+function eventosAtivos(event){
+    event.preventDefault();
+    document.getElementById('eventos-painel').innerHTML = ''
+    const eventos = JSON.parse(localStorage.getItem("eventos"))
+    document.getElementById('h2-historico').style.display = 'none';
+    document.getElementById('h2-eventos').style.display = 'block';
+    atualizarEventos()
+}
+function restaurarEvento(id){
+    const eventos = JSON.parse(localStorage.getItem("eventos"))
+    localStorage.setItem(`edit`, id)
+    atualizaStorage(eventos[id].nome, eventos[id].descricao)
     atualizarEventos();
 }

@@ -25,8 +25,10 @@ main{
     flex-flow: column wrap;
     justify-content: center;
     align-items: center;
+    text-align: center;
     border: 1px solid black;
     padding: 5px 10px;
+    margin: 0px;
     background-color: rgba(0, 255, 255, 0.309);
 }
 .alert-modal{
@@ -72,23 +74,27 @@ footer{
     background-color: rgba(0,0,0,0.5); /* Black w/ opacity */
 }
 /* Modal Content/Box */
-.add-content-modal {
+.add-content-modal{
     display: flex;
     justify-content: center;
     align-items: center;
+    text-align: center;
     flex-flow: column wrap;
     background-color: #fefefe;
     margin: 90px auto; /* 15% from the top and centered */
     padding: 20px;
     max-width: 600px;
     border: 1px solid #888;
+    border-radius: 20px;
     width: 80%; /* Could be more or less, depending on screen size */
+}
+input{
+    font-size: 15px;
 }
 /* The Close Button */
 .add-close, .add-salvar {
     display: flex;
     color: #aaa;
-    float: right;
     font-size: 28px;
     font-weight: bold;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
@@ -114,6 +120,13 @@ footer{
     gap: 10px;
     margin-top: 5px;
 }
+.foot-modal > button{
+    padding: 0px 5px;
+    border: 1px solid black;
+    border-radius: 10px 10px;
+    box-shadow: 1px 1px 3px black;
+    background-color: transparent;
+}
 #nav-painel{
     display: flex;
     flex-flow: row wrap;
@@ -124,98 +137,192 @@ footer{
     gap: 10px;
 }
 #eventos-painel{
-    display: flex;
+    display: none;
     flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
     min-width: 100px;
     min-height: 100px;
     gap: 10px;
+    margin: 0px 10px;
 }
 .btn{
     border-radius: 20px;
     padding: 5px;
     cursor: pointer;
-
+    transform: scale(1);
+    transition: 0.5s;
+}
+.btn:hover{
+    transform: scale(1.1);
+}
+.btn-config{
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    border-radius: 100%;
+    transform: rotate(0deg);
+    transition: 0.5s;
+}
+.btn-config:hover{
+    transform: rotate(60deg);
+}
+.btn-config-interno{
+    font-size: 20px;
+    padding: 0px 5px;
+    border: none;
+    color: gray;
+    background-color: transparent;
+}
+.btn-config-interno:hover{
+    color: black;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+.btn-config-interno-caution:hover{
+    color: red;
 }
 #nome-descricao{
+    width: 100%;
+    color: black;
+    transform: scale(1);
+    transition: transform 0.3s ease, color 0s;
+}
+#nome-descricao,
+#conteudo-visualizar{
     display: flex;
+    flex-flow: column wrap;
     justify-content: center;
     align-items: center;
     gap: 20px;
 }
-#nome-descricao > p{
-    width: 500px;
-    display: inline-block;
-    white-space: pre-line;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    direction: ltr;
-    max-height: 300px;
-}
-#evento-ativo{
-    border: 1px solid black;
+#conteudo-config{
     display: flex;
     justify-content: center;
     align-items: center;
+    text-align: center;
     flex-flow: column wrap;
-    padding: 10px;
-    border-radius: 10px;
-    background-color: aqua;
-    max-width: 800px;
-  }
-  #edit-del{
+}
+#evento-ativo{
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column nowrap;
+    border: 1px solid black;
+    border-radius: 20px;
+    margin: 0px 5px;
+    padding: 0px 5px;
+    width: 100%;
+    background-color: transparent;
+}
+#evento-ativo:hover{
+    background-color: #28c2b5;
+}
+#evento-ativo:hover > #nome-descricao{
+    transform: scale(1.02);
+    color: white;
+}
+
+#edit-del{
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 10px;
-    margin-top: 10px;
-  }
-  #edit{
+    margin-top: 5px;
+    padding: 5px;
+    width: 100%;
+    background-color: #d6d7d7b3;
+    border-radius: 0px 0px 20px 20px;
+}
+#res{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 5px;
+    padding: 5px;
+    width: 100%;
+    background-color: #d6d7d7b3;
+    border-radius: 0px 0px 20px 20px;
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 5px 10px;
     font-size: 20px;
     border-radius: 5px;
-  }
-  #edit:hover{
+    cursor: pointer;
+}
+#res:hover,
+#res:focus{
+    background-color: rgb(127, 208, 255);
+    color: white;
+}
+#edit{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px 10px;
+    font-size: 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+#edit:hover,
+#edit:focus{
     background-color: aquamarine;
     color: white;
-  }
-  #del{
+}
+#del{
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 5px 10px;
     font-size: 20px;
     border-radius: 5px;
-  }
-  #del:hover{
+    cursor: pointer;
+}
+#del:hover,
+#del:focus{
     background-color: lightcoral;
     color: white;
-  }
-  #h2-edit{
+}
+#h2-edit{
     display: none;
-  }
-  @media only screen and (max-width: 600px) {
-    main{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 10px 10px;
-    }
-    .main, #edit, #del, #nome-descricao, #evento-ativo{
-        display: flex;
-        align-items: center;
-        flex-flow: column wrap;
-        max-width: 230px;
-        margin-left: 0px;
-    }
-    #nome-descricao > p, #nome-descricao > h4{
-        width: 230px;
-        display: inline-block;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        direction: ltr;
-    }
-  }
+}
+#confirm-limpar-tudo,
+#msg-tudo-limpo,
+#add-modal-config,
+#h2-historico{
+    display: none;
+}
+       /* MOBILE AJUST */
+@media only screen and (max-width: 600px) {
+main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 10px;
+}
+.main, #edit, #del, #nome-descricao, #evento-ativo{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-flow: column wrap;
+    white-space: wrap;
+    overflow: hidden;
+    text-overflow: ellipsis " [..]";
+}
+#nome-descricao > p, 
+#nome-descricao > h4,
+#conteudo-visualizar > h3,
+#conteudo-visualizar > p{
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    white-space: wrap;
+    overflow: hidden;
+    text-overflow: ellipsis " [..]";
+    direction: ltr;
+}
+}
