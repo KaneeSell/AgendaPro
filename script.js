@@ -22,6 +22,49 @@ function atualizarData() {
     inputData.innerText = `${dia}/${mes}/${ano}`
     inputHora.innerText = `${hora}:${minuto}:${segundo} ${ampm}`
 }
+const btnLight = document.getElementById('btn-light')
+const btnDark = document.getElementById('btn-dark')
+lightDarkMode()
+function lightDarkMode(){
+    const mode = localStorage.getItem("mode")
+    if(mode == 'dark'){
+        btnLight.style.display = 'none'
+        btnDark.style.display = 'block'
+        console.log('dark')
+    } else if(mode == 'light'){
+        btnLight.style.display = 'block'
+        btnDark.style.display = 'none'
+        console.log('light')
+    } else {
+        localStorage.setItem('mode', 'light')
+        lightDarkMode()
+        console.log('default')
+    }
+}
+function lightMode(){
+    localStorage.setItem('mode', 'dark')
+    lightDarkMode()
+}
+function darkMode(){
+    localStorage.setItem('mode', 'light')
+    lightDarkMode()
+}
+loadAjust()
+function loadAjust(){
+    const caracterNome = localStorage.getItem('caracterNome')
+    const caracterDescricao = localStorage.getItem('caracterDescricao')
+    if(caracterNome){
+    } else{
+        localStorage.setItem('caracterNome', 20)
+    }
+    if(caracterDescricao){
+    } else{
+        localStorage.setItem('caracterDescricao', 300)
+    }
+}
+
+
+
 document.getElementById('h2-eventos').style.display = 'block';
 // modal
 const modal = document.getElementById("add-modal");
@@ -290,6 +333,10 @@ function abrirConfig(){
     formEvent.style.display = "none";
     conteudoVisualizar.style.display = "none";
     modalConfig.style.display = "block"
+    const NomeStorag = localStorage.getItem('caracterNome')
+    document.getElementById('caracteresNome').value = `${NomeStorag}`
+    const DescricaoStorag = localStorage.getItem('caracterDescricao')
+    document.getElementById('caracteresDescricao').value = `${DescricaoStorag}`
 }
 function historicoEventos(event){
     event.preventDefault();
@@ -312,4 +359,16 @@ function restaurarEvento(id){
     localStorage.setItem(`edit`, id)
     atualizaStorage(eventos[id].nome, eventos[id].descricao)
     atualizarEventos();
+}
+function configCaracterNome(){
+    const ajustCaracterNome = document.getElementById('caracteresNome').value
+    let caracterNome = document.getElementById('nome-evento')
+    caracterNome.maxLength = `${ajustCaracterNome}`
+    localStorage.setItem('caracterNome', ajustCaracterNome)
+}
+function configCaracterDesc(){
+    const ajustCaracterDesc = document.getElementById('caracteresDescricao').value
+    let caracterDescricao = document.getElementById('descricao-evento')
+    caracterDescricao.maxLength = `${ajustCaracterDesc}`
+    localStorage.setItem('caracterDescricao', ajustCaracterDesc)
 }

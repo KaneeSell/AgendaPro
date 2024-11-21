@@ -5,10 +5,18 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>AgendaPro</title>
         <link rel="stylesheet" href="./style.css">
+        <link rel="stylesheet-light" href="./light-dark/light.css">
+        <!-- <link rel="stylesheet-dark" href="./light-dark/dark.css"> -->
     </head>
     <body>
         <header>
             <h1>AgendaPro</h1>
+            <button id="btn-light" onclick="lightMode()">
+                <img height="20px" src="./icons/light.ico">
+            </button>
+            <button id="btn-dark" onclick="darkMode()">
+                <img height="20px" src="./icons/dark.ico">
+            </button>
         </header>
         <div id="add-modal" class="modal">
             <form onsubmit="salvarEvento(event)" id="formAgenda" class="add-content-modal">
@@ -37,8 +45,18 @@
                 </div>
             </div>
             <div id="add-modal-config" class="add-content-modal">
+                <h4>Configurações</h4>
                 <div id="conteudo-config">
-                    <h4>Configurações</h4>
+                    <div>
+                        <label for="caracteresNome">Caracteres nome:</label>
+                        <input type="number" name="caracteresNome" id="caracteresNome" style="text-align: center;">
+                        <button class="btn" onclick="configCaracterNome()">Ok</button>
+                    </div>
+                    <div>
+                        <label for="caracteresDescricao">Caracteres Descrição:</label>
+                        <input type="number" name="caracteresDescricao" id="caracteresDescricao" style="text-align: center;">
+                        <button class="btn" onclick="configCaracterDesc()">Ok</button>
+                    </div>
                     <button class="btn-config-interno btn-config-interno-caution" type="button" id="limpar-tudo-config">Limpar Tudo</button>
                 </div>
                 <div class="foot-modal">
@@ -52,7 +70,7 @@
                 <h4>Limpar Tudo</h4>
                 <p style="color: #df3f3f;">Para apagar todos os dados confirme o campo abaixo digitando "Limpar Tudo"</p>
                 <label for="confirm">Confirme:</label>
-                <input type="text" name="confirm" id="confirm" placeholder="Limpar Tudo" style="text-align: center;" minlength="11" maxlength="11" required>
+                <input type="text" name="confirm" id="confirm" placeholder="Limpar Tudo" style="text-align: center;" minlength="11" maxlength="11" autocomplete="off" required>
                 <button type="submit">Ok</button>
             </form>
             <div class="foot-modal">

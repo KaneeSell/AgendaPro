@@ -4,23 +4,28 @@
     padding: 0px;
 }
 body{
-    background-image: linear-gradient(20deg, rgb(120, 230, 230), rgb(215, 241, 238));
+    /* background-color: #d7f1ee; */
     background-repeat: no-repeat;
     background-attachment: fixed;
     cursor: default;
     font-size: 30px;
 }
 header{
+    background-color: rgba(0, 255, 255, 0.377);
+    color: white;
     display: flex;
     justify-content: center;
     align-items: center;
     border: 2px solid black;
-    color: white;
     padding: 0px 0px 5px 0px;
     text-shadow: 1px 1px 1px black;
-    background-color: rgba(0, 255, 255, 0.377);
+}
+header > button{
+    background-color: transparent;
+    border: none;
 }
 main{
+    background-color: rgba(0, 255, 255, 0.309);
     display: flex;
     flex-flow: column wrap;
     justify-content: center;
@@ -29,21 +34,20 @@ main{
     border: 1px solid black;
     padding: 5px 10px;
     margin: 0px;
-    background-color: rgba(0, 255, 255, 0.309);
 }
 .alert-modal{
-    display: none;
     color: red;
+    display: none;
     font-size: 15px;
 }
 .alert-sucesso{
-    display: none;
     color: blue;
+    display: none;
     font-size: 15px;
 }
 .alert-valido{
-    display: none;
     color: rgb(131, 234, 138);
+    display: none;
     font-size: 15px;
 }
 #data-atual{
@@ -52,13 +56,14 @@ main{
     justify-content: center;
 }
 footer{
+    background-color: rgba(34, 143, 143, 0.362);
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 0px 3px;
-    background-color: rgba(34, 143, 143, 0.362);
 }
 .modal {
+    background-color: rgba(0,0,0,0.5); /* Black w/ opacity */
     display: none; /* Hidden by default */
     justify-content: center;
     align-items: center;
@@ -70,17 +75,15 @@ footer{
     width: 100%; /* Full width */
     height: 100%; /* Full height */
     overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.5); /* Black w/ opacity */
 }
 /* Modal Content/Box */
 .add-content-modal{
+    background-color: #fefefe;
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
     flex-flow: column wrap;
-    background-color: #fefefe;
     margin: 90px auto; /* 15% from the top and centered */
     padding: 20px;
     max-width: 600px;
@@ -93,8 +96,8 @@ input{
 }
 /* The Close Button */
 .add-close, .add-salvar {
-    display: flex;
     color: #aaa;
+    display: flex;
     font-size: 28px;
     font-weight: bold;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
@@ -121,11 +124,11 @@ input{
     margin-top: 5px;
 }
 .foot-modal > button{
+    background-color: transparent;
     padding: 0px 5px;
     border: 1px solid black;
     border-radius: 10px 10px;
     box-shadow: 1px 1px 3px black;
-    background-color: transparent;
 }
 #nav-painel{
     display: flex;
@@ -153,12 +156,15 @@ input{
     transform: scale(1);
     transition: 0.5s;
 }
+#limpar-tudo-config{
+    cursor: pointer;
+}
 .btn:hover{
     transform: scale(1.1);
 }
 .btn-config{
-    cursor: pointer;
     background-color: transparent;
+    cursor: pointer;
     border: none;
     border-radius: 100%;
     transform: rotate(0deg);
@@ -168,11 +174,11 @@ input{
     transform: rotate(60deg);
 }
 .btn-config-interno{
+    background-color: transparent;
+    color: gray;
     font-size: 20px;
     padding: 0px 5px;
     border: none;
-    color: gray;
-    background-color: transparent;
 }
 .btn-config-interno:hover{
     color: black;
@@ -183,8 +189,8 @@ input{
     color: red;
 }
 #nome-descricao{
-    width: 100%;
     color: black;
+    width: 100%;
     transform: scale(1);
     transition: transform 0.3s ease, color 0s;
 }
@@ -202,8 +208,15 @@ input{
     align-items: center;
     text-align: center;
     flex-flow: column wrap;
+    gap: 15px;
+    margin: 15px 0px;
+}
+#caracteresNome,
+#caracteresDescricao{
+    width: 50px;
 }
 #evento-ativo{
+    background-color: transparent;
     cursor: pointer;
     display: flex;
     justify-content: center;
@@ -214,17 +227,17 @@ input{
     margin: 0px 5px;
     padding: 0px 5px;
     width: 100%;
-    background-color: transparent;
 }
 #evento-ativo:hover{
     background-color: #28c2b5;
 }
 #evento-ativo:hover > #nome-descricao{
-    transform: scale(1.02);
     color: white;
+    transform: scale(1.02);
 }
 
 #edit-del{
+    background-color: #d6d7d7b3;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -232,10 +245,10 @@ input{
     margin-top: 5px;
     padding: 5px;
     width: 100%;
-    background-color: #d6d7d7b3;
     border-radius: 0px 0px 20px 20px;
 }
 #res{
+    background-color: #d6d7d7b3;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -243,7 +256,6 @@ input{
     margin-top: 5px;
     padding: 5px;
     width: 100%;
-    background-color: #d6d7d7b3;
     border-radius: 0px 0px 20px 20px;
     display: flex;
     justify-content: center;
