@@ -224,7 +224,7 @@ function atualizarEventos(){
     const eventos = JSON.parse(localStorage.getItem("eventos"))
     if(eventos){
     } else{
-            localStorage.setItem("eventos", JSON.stringify('[]'));
+            localStorage.setItem("eventos", JSON.stringify('[{}]'));
     }
     document.getElementById('eventos-painel').style.display = 'none'
     for(let i = 0; i < eventos.length; i++){
