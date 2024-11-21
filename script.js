@@ -153,8 +153,9 @@ function atualizaStorage(nome, descricao){
     let eventos = JSON.parse(localStorage.getItem("eventos"))
     let edit = JSON.parse(localStorage.getItem("edit"))
     let id
+    const h2eventos = document.getElementById('h2-eventos')
     const ativo = true
-    if(h2Edit.style.display != 'none'){
+    if(h2Edit.style.display != 'none' || h2eventos.style.display == 'none'){
         id = edit
         eventos[id] = {'id': id,'nome': nome, 'descricao': descricao, 'ativo': ativo};
     } else{
