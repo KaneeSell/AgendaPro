@@ -1,6 +1,5 @@
 // Ao Carregar a Página
 localStorage.setItem('edit', false)
-if(!(JSON.parse(localStorage.getItem('eventos')))){localStorage.setItem('eventos', JSON.stringify([]))}
 window.onload = function () {
     atualizarEventos();
     atualizarData();
@@ -213,10 +212,13 @@ function atualizarEventos(){
                 console.log(eventos[i].ativo + ', ' + h2eventos.style.display)
                 document.getElementById('eventos-painel').style.display = 'flex'
                 criarDivEvento(eventos[i].nome, eventos[i].descricao, eventos[i].id)
+<<<<<<< HEAD
             }
             else if(eventos[i].ativo == false && h2eventos.style.display == 'none'){
                 document.getElementById('eventos-painel').style.display = 'flex'
                 criarDivhistorico(eventos[i].nome, eventos[i].descricao, eventos[i].id)
+=======
+>>>>>>> 0fac47699bb0a9657b745f93412a45d60a9410b4
             }
         }
     }
@@ -283,6 +285,7 @@ function desativarEvento(id){
     localStorage.setItem("eventos", JSON.stringify(eventos));
     atualizarEventos();
 }
+<<<<<<< HEAD
 function abrirConfig(){
     modal.style.display = "block";
     modalVisualizar.style.display = "none";
@@ -312,3 +315,5 @@ function restaurarEvento(id){
     atualizaStorage(eventos[id].nome, eventos[id].descricao)
     atualizarEventos();
 }
+=======
+>>>>>>> 0fac47699bb0a9657b745f93412a45d60a9410b4
