@@ -1,6 +1,5 @@
 // Ao Carregar a Página
 localStorage.setItem('edit', false)
-if(!(JSON.parse(localStorage.getItem('eventos')))){localStorage.setItem('eventos', JSON.stringify([]))}
 window.onload = function () {
     atualizarEventos();
     atualizarData();
