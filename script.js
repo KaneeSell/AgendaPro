@@ -21,33 +21,6 @@ function atualizarData() {
     inputData.innerText = `${dia}/${mes}/${ano}`
     inputHora.innerText = `${hora}:${minuto}:${segundo} ${ampm}`
 }
-const btnLight = document.getElementById('btn-light')
-const btnDark = document.getElementById('btn-dark')
-lightDarkMode()
-function lightDarkMode(){
-    const mode = localStorage.getItem("mode")
-    if(mode == 'dark'){
-        btnLight.style.display = 'none'
-        btnDark.style.display = 'block'
-        console.log('dark')
-    } else if(mode == 'light'){
-        btnLight.style.display = 'block'
-        btnDark.style.display = 'none'
-        console.log('light')
-    } else {
-        localStorage.setItem('mode', 'light')
-        lightDarkMode()
-        console.log('default')
-    }
-}
-function lightMode(){
-    localStorage.setItem('mode', 'dark')
-    lightDarkMode()
-}
-function darkMode(){
-    localStorage.setItem('mode', 'light')
-    lightDarkMode()
-}
 loadAjust()
 function loadAjust(){
     const caracterNome = localStorage.getItem('caracterNome')
